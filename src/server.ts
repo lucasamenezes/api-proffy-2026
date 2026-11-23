@@ -6,6 +6,8 @@ import fastifyCookie from '@fastify/cookie'
 import { env } from "./utils/env.ts"
 import scalarAPIReference from "@scalar/fastify-api-reference"
 import { createUserRouter } from "./routers/create-users.ts"
+import { loginRouter } from "./routers/login.ts"
+import { createClassesRouter } from "./routers/create-classes.ts"
 
 const server = fastify({
     logger: {
@@ -48,6 +50,8 @@ server.setValidatorCompiler(validatorCompiler)
 server.setSerializerCompiler(serializerCompiler)
 
 server.register(createUserRouter)
+server.register(loginRouter)
+server.register(createClassesRouter)
 
 server.listen({ port: 3333 }).then(() => {
     console.log("HTTP server is running")
